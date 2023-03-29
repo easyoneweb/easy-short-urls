@@ -1,4 +1,5 @@
 {
+  "API_KEY": "",
   "DB": "EOWShortUrls",
   "server": {
     "port": 3000,

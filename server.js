@@ -10,6 +10,12 @@ mongoose.connect(`mongodb://localhost:27017/${__config.DB}`, { useNewUrlParser: 
 
 app.use(bodyParser.json({ limit: '10000kb' }));
 
+app.use('/api/v1', (req, res, next) => {
+  if (req.headers['api-key'] !== __config.API_KEY) return res.status(401).json({ error: true, message: 'Not Authorized' });
+
+  next();
+});
+
 const restApiV1 = require('./rest-api/v1');
 app.use('/api/v1', restApiV1);
 
